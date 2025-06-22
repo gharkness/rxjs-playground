@@ -5,11 +5,11 @@ const observable$ = new Observable<string>(subscriber => {
     subscriber.next('Alice');
     subscriber.next('Ben');
     setTimeout(() => {
-        subscriber.next('Charlie');
-    }, 2000);
-
-    setTimeout(() => {
         subscriber.error(new Error('Failure'))
+    }, 2000);
+    setTimeout(() => {
+        subscriber.next('Charlie');
+        subscriber.complete();
     }, 4000);
 
     return () => {
